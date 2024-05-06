@@ -1,0 +1,143 @@
+Fitness App Architecture Block Diagram:
+
+Front End:
+  - Angular Application
+    - Components:
+        - HomeComponent
+        - MealAnalysisComponent
+        - ActivityTrackingComponent
+        - GoalSettingComponent
+        - MealPlanningComponent
+        - CommunityComponent
+        - NotificationsComponent
+        - ProfileComponent
+    - Services:
+        - AuthService
+        - MealService
+        - ActivityService
+        - GoalService
+        - CommunityService
+        - NotificationService
+    - Routing:
+        - /home -> HomeComponent
+        - /meal-analysis -> MealAnalysisComponent
+        - /activity-tracking -> ActivityTrackingComponent
+        - /goal-setting -> GoalSettingComponent
+        - /meal-planning -> MealPlanningComponent
+        - /community -> CommunityComponent
+        - /notifications -> NotificationsComponent
+        - /profile -> ProfileComponent
+    - State Management:
+        - Utilize services and RxJS for state management across components.
+
+Back End:
+  - Node.js Application (with Express.js)
+    - Routes:
+        - /api/auth (authentication and authorization)
+        - /api/meals (meal analysis and history)
+        - /api/activity (activity tracking data)
+        - /api/goals (goal setting and progress tracking)
+        - /api/meal-planning (meal planning and recipe recommendations)
+        - /api/community (community content and interactions)
+        - /api/notifications (notifications and reminders)
+    - Middleware:
+        - Authentication middleware (e.g., JWT verification)
+        - Error handling and logging
+    - Controllers:
+        - Handle business logic for each route
+    - Models:
+        - UserModel (manages user accounts)
+        - MealModel (manages meal data and history)
+        - ActivityModel (manages activity data)
+        - GoalModel (manages goal data)
+        - CommunityModel (manages community content)
+        - NotificationModel (manages notifications and reminders)
+    - Database:
+        - MongoDB for storing and querying data efficiently.
+
+Logic Flow:
+- **Front End**:
+  - User interacts with UI components.
+  - UI components use services to fetch or manipulate data.
+  - Services make HTTP requests to the back end APIs.
+- **Back End**:
+  - Receives HTTP requests from the front end.
+  - Routes requests to appropriate controllers based on endpoints.
+  - Controllers process requests using business logic and interact with models to query or update data.
+  - Sends responses back to the front end.
+
+This architecture provides a high-level overview of the components and routes for your fitness app's front end and back end. Let me know if you need any further guidance or if you'd like more details on any specific part of the architecture!
+
+
+Fitness App Architecture Block Diagram:
+
+    Front End           Routes              Back End           Database
+  --------------      --------------     ----------------    -------------------
+ | Angular App  |    | /api/auth      |   | Node.js App    | | MongoDB        |
+ |              |    | /api/meals     |   | (with Express) | -------------------
+ | - Components |    | /api/activity  |   |               |
+ |   - Home     |    | /api/goals     |   | - Controllers |
+ |   - Meal     |    | /api/meal-plan |   |   - Auth      |
+ |   - Activity |    | /api/community |   |   - Meal      |
+ |   - Goals    |    | /api/notifs    |   |   - Activity  |
+ |   - Planning |    --------------     |   - Goal       |
+ |   - Community|                       |   - Planning   |
+ |   - Notifs   |                       |   - Community  |
+ |   - Profile  |                       |   - Notifs     |
+ |              |                       | - Models      |
+ | - Services  |                       |   - UserModel  |
+ |   - Auth    |                       |   - MealModel  |
+ |   - Meal    |                       |   - ActivityMdl|
+ |   - Activity|                       |   - GoalModel  |
+ |   - Goal    |                       |   - PlanModel  |
+ |   - Planning|                       |   - CommModel  |
+ |   - Comm    |                       |   - NotifModel |
+ |   - Notifs  |                       |               |
+  --------------                         ----------------
+
+
+Fitness App Flowchart:
+
+    +-----------+                     +---------------+
+    |   User    |                     | Angular App    |
+    |  Actions  |                     | (Front End)    |
+    +----+------+                     +-------+-------+
+         |                                   |
+         |                                   |
+         v                                   v
+    +----+------+                     +-------+-------+
+    |HTTP Request|                     | HTTP Requests |
+    +-----------+                     +-------+-------+
+         |                                   |
+         |                                   |
+         v                                   v
+    +-----------+                     +---------------+
+    |Express.js |                     | Node.js App    |
+    |Middleware |                     | (Back End)     |
+    +-----+-----+                     +-------+-------+
+         |                                   |
+         v                                   v
+    +-----------+                     +---------------+
+    |Controllers|<-------->       |Business Logic   |
+    +-----+-----+                     |(API Routes)  |
+         |                                   |
+         v                                   v
+    +-----+-----+                     +---------------+
+    | Models    |                     |MongoDB Database|
+    +-----+-----+                     +---------------+
+
+Explanation:
+
+1. **User Actions**: Users interact with the app through the Angular front end.
+
+2. **HTTP Requests**: The front end sends HTTP requests to the back end, such as API calls.
+
+3. **Express.js Middleware**: Middleware in the Node.js back end handles incoming requests and performs any necessary authentication or processing.
+
+4. **Controllers**: Controllers process the requests and handle the business logic, such as querying the database, updating data, or performing other operations.
+
+5. **Models**: Controllers interact with models to handle data operations, such as retrieving or updating data in the MongoDB database.
+
+6. **Database**: The MongoDB database stores data such as user information, meals, activity data, and other app-related data.
+
+The flowchart demonstrates the overall data flow and interaction between the different parts of your app, starting with the user's actions and ending with data being stored in the database. Let me know if you need any further assistance or adjustments!
